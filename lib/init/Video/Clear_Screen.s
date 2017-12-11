@@ -10,7 +10,7 @@
 ;   d7  =>  size of screen
 ;------------------------------------------------------------------------------
 IDF_Init_Screens:
-.clearLoop  clr.w   (a1)+
-            dbra    d7,.clearLoop
+.clearLoop              clr.w   (a1)+
+                        dbra    d7,.clearLoop
 
-            rts
+                        rts
