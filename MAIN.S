@@ -48,7 +48,7 @@ main:
 ;			Demoloop
 ;-----------------------------------------------------------------------------
 ;demoloop:
-			;bsr		IDF_Get_System
+			;bsr		IDL_Get_System
 			;move.l	(cookie_result),d1
 			;cmp.l	d0,cookie_result
 ;-----------------------------------------------------------------------------

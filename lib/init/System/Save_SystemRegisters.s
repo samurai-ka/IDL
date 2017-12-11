@@ -5,9 +5,9 @@
 			section text
 ;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
-; IDF Function 'Save_SystemRegisters'
+; IDL Function 'Save_SystemRegisters'
 ;------------------------------------------------------------------------------
-IDF_Save_SystemRegisters:
+IDL_Save_SystemRegisters:
 			move.w  SR,SavSR        					; Statusregister retten
 			ori     #$0700,sr       					; Interrupts off
 			move.l	#SavRegStack,a6						; Pointer to the userstack to save the registers

@@ -5,11 +5,11 @@
 			section text
 ;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
-; IDF Function 'Init_Screens'
+; IDL Function 'Init_Screens'
 ;   a1  =>  pointer to screen
 ;   d7  =>  size of screen
 ;------------------------------------------------------------------------------
-IDF_Init_Screens:
+IDL_Init_Screens:
 .clearLoop              clr.w   (a1)+
                         dbra    d7,.clearLoop
 

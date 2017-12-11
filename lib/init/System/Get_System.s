@@ -3,7 +3,7 @@
 ;------------------------------------------------------------------------------
 			section text
 ;------------------------------------------------------------------------------
-IDF_Get_System:
+IDL_Get_System:
 			move.l	_p_cookies.w,d0			; Load cookiejar pointer, if $0000 => Z Flag true
 			beq.s 	.JarNotInstalled		; if Zero Flag = True then Jump
 			movea.l d0,a0

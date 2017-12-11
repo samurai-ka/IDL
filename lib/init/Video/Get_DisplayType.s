@@ -8,7 +8,7 @@
 ;		monitor test
 ;		0=Mono, 1=RGB, 2=VGA
 ;------------------------------------------------------------------------------
-IDF_Get_DisplayType:
+IDL_Get_DisplayType:
 			move.w	#$59,-(sp)			; VGetMonitor()
 			trap	#14					; Execute
 			addq.l	#2,sp				; Correct stack

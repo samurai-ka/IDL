@@ -5,9 +5,9 @@
 			section text
 ;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
-; IDF Function 'Get_SystemMemory'
+; IDL Function 'Get_SystemMemory'
 ;------------------------------------------------------------------------------
-IDF_Get_SystemMemory:
+IDL_Get_SystemMemory:
 ;            btst    #%00000000,f030_memsize
 
             move.b  f030_conf_type,d0                   ; get memmap from register

@@ -4,9 +4,9 @@
 			section text
 ;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
-;	IDF Function 'IDF_Release_AudioLock'
+;	IDL Function 'IDL_Release_AudioLock'
 ;------------------------------------------------------------------------------
-IDF_Release_AudioLock:
+IDL_Release_AudioLock:
 			cmp.b	#1,DSPLock
 			bne.s	.next1
 			move.w	#$69,-(sp)			;Dsp_Unlock()

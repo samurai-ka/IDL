@@ -4,9 +4,9 @@
 			section text
 ;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
-;	IDF Function 'IDF_Get_AudioLock'
+;	IDL Function 'IDL_Get_AudioLock'
 ;------------------------------------------------------------------------------
-IDF_Get_AudioLock:
+IDL_Get_AudioLock:
 			move.w	#$68,-(sp)			; XBIOS Dsp_Lock()
 			trap	#14					; Call
 			addq.l	#2,sp				; Stack cleanup

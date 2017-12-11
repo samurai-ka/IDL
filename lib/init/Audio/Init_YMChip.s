@@ -7,7 +7,7 @@
 ; Turns of the speaker inside of Falcons
 ;
 
-IDF_Init_YMChip:
+IDL_Init_YMChip:
                 moveq   #10,D0
                 lea     YM2149_Read.w,A0
                 lea     YM2149_Write.w,A1

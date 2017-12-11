@@ -5,9 +5,9 @@
 			section text
 ;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
-; IDF Function 'Restore_SystemRegisters'
+; IDL Function 'Restore_SystemRegisters'
 ;------------------------------------------------------------------------------
-IDF_Restore_SystemRegisters:
+IDL_Restore_SystemRegisters:
 			ori     #$0700,sr       		        ; Interrupts off
 
 			movea.l SavRegStackState(PC),a6	        ; Pointer to the userstack to save the registers
