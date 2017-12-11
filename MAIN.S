@@ -87,9 +87,8 @@ DemoHeaderText:
 ;					"         1         2         3         4"
 ;					"1234567890123456789012345678901234567890"
 			dc.b	27,69
-			dc.b	27,112,"   S   A   L   V   A   T   I   O   N    ",27,113,CR,LF
-			dc.b	"       (C) Inter Development 2017       ",CR,LF
-			dc.b	"        An Indepentend Production       ",CR,LF,CR,LF,CR,LF
+			dc.b	27,112,"     Inter Development Demo Library     ",27,113,CR,LF
+			dc.b	"     An Indepentend Production 2017     ",CR,LF,CR,LF,CR,LF
 			dc.b	0
 			even
 

@@ -6,11 +6,10 @@
 ;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
 ; IDL Function 'IDF_Set_VidelSettings'
-; SetRes-Routinen (Für Falcon...)
-; .l  Zeiger auf eine mit GetVideo erzeugte VDO-Sequenz.
+; a0.l  Pointer to a VDO sequence
 ;------------------------------------------------------------------------------
-IDF_Set_VidelSettings:
-                        bsr.s   wvbl
+IDL_Set_VidelSettings:
+                        bsr.s   IDL_Wait_vbl
 
                         movea.l (A0)+,A0
                         move.w  (A0)+,shifter_res.w
