@@ -7,10 +7,6 @@
 ;			GLOBAL	m68030, m68882
 ;			OPT		opt-speed
 
-
-;CheckMem	equ		4				; Minimum memory set to = 4 or 14
-;show_CpuCycles				EQU 	0
-
 ;-----------------------------------------------------------------------------
 ;		Codestart and Transient Program Area
 ;-----------------------------------------------------------------------------
