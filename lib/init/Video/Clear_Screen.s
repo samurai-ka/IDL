@@ -10,6 +10,7 @@
 ;   d7  =>  size of screen
 ;------------------------------------------------------------------------------
 IDL_Init_Screens:
+                        clr.l   d0
 .clearLoop              clr.w   (a1)+
                         dbra    d7,.clearLoop
 
