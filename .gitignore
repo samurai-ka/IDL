@@ -1,0 +1,8 @@
+/out
+/out/*
+
+*.bak
+*.back
+*.backup
+
+*.tos

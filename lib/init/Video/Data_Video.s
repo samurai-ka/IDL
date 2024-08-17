@@ -38,6 +38,6 @@ vsync_flag:     ds.b    1
 ; _p_screen_1:	ds.l	1					; screen address 1
 ; _p_screen_2:	ds.l	1					; screen address 2
 ; _p_screen_3:	ds.l	1					; screen address 3
-_p_screen_1:    ds.w    384*288             ; TC Screen
-_p_screen_2:    ds.w    384*288             ; TC Screen
-_p_screen_3:    ds.w    384*288             ; TC Screen
+; _p_screen_1:    ds.w    384*288             ; TC Screen
+; _p_screen_2:    ds.w    384*288             ; TC Screen
+; _p_screen_3:    ds.w    384*288             ; TC Screen

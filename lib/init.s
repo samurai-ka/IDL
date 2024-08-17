@@ -15,6 +15,21 @@ init:
 			bsr		IDL_Init_YMChip				; Reseting YM and internal speaker off
 
 			bsr		crawcin						; Wait for key
+
+;---------------------------
+			move.w    #%00000100,-(sp)    		; Offset 2 / TC
+			move.w    #88,-(sp)     			; Offset 0
+			trap      #14           			; Call XBIOS
+			addq.l    #4,sp         			; Correct stack
+;---------------------------
+
+			lea		_p_screen_1,a6				; Set Framebuffer to pointer
+			move.w	#%0110101010010101,d6		; Set blit
+			bsr		IDL_Clear_Framebuffer		; Call Clear Framebuffer
+			bsr		IDL_Set_Videobase			; a6 already set to framebuffer. Call Set_Videobase address
+
+			bsr		IDL_Mainloop			
+
 			
 			rts
 

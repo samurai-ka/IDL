@@ -1,7 +1,7 @@
 ; Inter Development Demo Library
 ; (c) 1993-2012
 
-			OPT 	D+				; Include all symbols for debugging in the output file. Default is off in Devpac-comptability mode, otherwise on.
+; 			OPT 	D+				; Include all symbols for debugging in the output file. Default is off in Devpac-comptability mode, otherwise on.
 ;			OPT		X+				; Only include xdefs in the output file (no symbols). This flag has always the inverted state of d.
 ;			OPT		A+				; Automatically optimize absolute to PC-relative references. Default is off in Devpac-comptability mode, otherwise on.
 ;			GLOBAL	m68030, m68882
