@@ -22,7 +22,7 @@ IDL_Clear_Framebuffer:
 
 ;------------------------------------------------------------------------------
 ; IDL Function 'Get Videobase'
-;   a6  =>  pointer to videobase address
+;   a6  <=  pointer to videobase address
 ;   d7      destroyed
 ;------------------------------------------------------------------------------
 IDL_Get_Videobase:
@@ -32,7 +32,7 @@ IDL_Get_Videobase:
                 move.b  shifter_dbasem,D7
                 lsl.l   #8,D7
                 move.b  shifter_dbasel,D7
-                movea   D7,A6                   ; Return pointer in A6
+                move.l  D7,A6                   ; Return pointer in A6
                 rts
 
 ;------------------------------------------------------------------------------

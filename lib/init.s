@@ -13,24 +13,6 @@ init:
 				bsr		IDL_Save_SystemRegisters ; Save all registers
 				bsr		IDL_Get_AudioLock		; Get a lock on the Falcon Audiosystem
 				bsr		IDL_Init_YMChip			; Reseting YM and internal speaker off
-
-				bsr		crawcin					; Wait for key
-
-;---------------------------
-				move.w	#%00000100,-(SP)		; Offset 2 / TC
-				move.w	#88,-(SP)				; Offset 0
-				trap	#14						; Call XBIOS
-				addq.l	#4,SP					; Correct stack
-;---------------------------
-
-				lea		_p_screen_1,A6			; Set Framebuffer to pointer
-				move.w	#%0110101010010101,D6	; Set blit
-				bsr		IDL_Clear_Framebuffer	; Call Clear Framebuffer
-				bsr		IDL_Set_Videobase		; a6 already set to framebuffer. Call Set_Videobase address
-
-				bsr		IDL_Mainloop			
-
-			
 				rts
 
 ;-----------------------------------------------------------------------------
