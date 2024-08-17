@@ -2,24 +2,24 @@
 ; Inter Development Demo Library
 ;
 ;------------------------------------------------------------------------------
-			section text
+                section text
 ;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
 ; Wait for next VBL and then continue
 ;------------------------------------------------------------------------------
 
 IDL_Wait_vbl:
-;                IF show_CpuCycles
+                IFNE    debug
                 move.l  #160,f030_videl_pal256.w
-;                ENDC
+                ENDC
 
                 sf      vsync_flag
 .waitvblloop:
                 tst.b   vsync_flag
                 beq.s   .waitvblloop
 
-;                IF show_CpuCycles
+                IFNE    debug
                 clr.l   f030_videl_pal256.w
-;                ENDC
+                ENDC
 
                 rts

@@ -2,60 +2,60 @@
 ; Inter Development Demo Library
 ;
 ;------------------------------------------------------------------------------
-			section text
+				section	text
 ;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
 ; IDL Function 'Save_SystemRegisters'
 ;------------------------------------------------------------------------------
 IDL_Save_SystemRegisters:
-			move.w  SR,SavSR        					; Statusregister retten
-			ori     #$0700,sr       					; Interrupts off
-			move.l	#SavRegStack,a6						; Pointer to the userstack to save the registers
+				move.w	SR,SavSR				; Statusregister retten
+				ori		#$0700,SR				; Interrupts off
+				move.l	#SavRegStack,A6			; Pointer to the userstack to save the registers
 
-			move.w  #-1,-(sp)							; Set mode = -1 (Reads the screen settings instead setting them)
-			move.w  #88,-(sp)							; XBIOS Int16 Vsetmode() - Set Video hardware register
-			trap    #14									; Falcon XBIOS function to obtain the video hardware settings
-			addq.l  #4,sp								; Correct stack
-			move.w  d0,-(a6)							; Save mode
+				move.w	#-1,-(SP)				; Set mode = -1 (Reads the screen settings instead setting them)
+				move.w	#88,-(SP)				; XBIOS Int16 Vsetmode() - Set Video hardware register
+				trap	#14						; Falcon XBIOS function to obtain the video hardware settings
+				addq.l	#4,SP					; Correct stack
+				move.w	D0,-(A6)				; Save mode
 
-			movem.l $FFFF8240.w,D0-D7					; Save registers - 16-Colors-Register
-			movem.l D0-D7,-(a6)
+				movem.l	$ffff8240.w,D0-D7		; Save registers - 16-Colors-Register
+				movem.l	D0-D7,-(A6)
 
-			lea.l	f030_videl_pal256.w,a0				; Save registers - 256-Colors-Register CHANGE THIS TO STACK
-			lea.l	SaveRegF030Pal,a1
-			move.w	#256-1,d7
+				lea.l	f030_videl_pal256.w,A0	; Save registers - 256-Colors-Register CHANGE THIS TO STACK
+				lea.l	SaveRegF030Pal,A1
+				move.w	#256-1,D7
 .loop256Pal:
-			move.l	(a0)+,(a1)+
-			dbra	d7,.loop256Pal
+				move.l	(A0)+,(A1)+
+				dbra	D7,.loop256Pal
 
-			move.l  _p_bus_error.w,-(a6)				; Save registers - Exception vectors
-			move.l  _p_adress_error.w,-(a6)
-			move.l  _p_hbl.w,-(a6)
-			move.l  _p_vbl.w,-(a6)
-			move.l  _p_mfp_io4.w,-(a6)
-			move.l  _p_mfp_timer_d.w,-(a6)
-			move.l  _p_mfp_timer_c.w,-(a6)
-			move.l  _p_mfp_timer_b.w,-(a6)
-			move.l  _p_mfp_timer_a.w,-(a6)
+				move.l	_p_bus_error.w,-(A6)	; Save registers - Exception vectors
+				move.l	_p_adress_error.w,-(A6)
+				move.l	_p_hbl.w,-(A6)
+				move.l	_p_vbl.w,-(A6)
+				move.l	_p_mfp_io4.w,-(A6)
+				move.l	_p_mfp_timer_d.w,-(A6)
+				move.l	_p_mfp_timer_c.w,-(A6)
+				move.l	_p_mfp_timer_b.w,-(A6)
+				move.l	_p_mfp_timer_a.w,-(A6)
 
-			move.b  mfp_irqA_enable.w,-(a6)				; Save registers - MFP
-			move.b  mfp_irqB_enable.w,-(a6)
-			move.b  mfp_irqA_mask.w,-(a6)
-			move.b  mfp_irqB_mask.w,-(a6)
-			move.b  mfp_vector_reg.w,-(a6)
-			move.b  mfp_timerA_ctrl.w,-(a6)
-			move.b  mfp_timerB_ctrl.w,-(a6)
-			move.b  mfp_timerCD_ctrl.w,-(a6)
+				move.b	mfp_irqA_enable.w,-(A6)	; Save registers - MFP
+				move.b	mfp_irqB_enable.w,-(A6)
+				move.b	mfp_irqA_mask.w,-(A6)
+				move.b	mfp_irqB_mask.w,-(A6)
+				move.b	mfp_vector_reg.w,-(A6)
+				move.b	mfp_timerA_ctrl.w,-(A6)
+				move.b	mfp_timerB_ctrl.w,-(A6)
+				move.b	mfp_timerCD_ctrl.w,-(A6)
 
-			move.l	a6,SavRegStackState					; Save the position of the user stack
+				move.l	A6,SavRegStackState		; Save the position of the user stack
 
-			andi    #$F8FF,sr       					; Interrupts on
+				andi	#$f8ff,SR				; Interrupts on
 
-			bsr		clear_keyboard_buffer
-			move.l	#SystemSavedText,d0
-			bsr		_Cconws
+				bsr		clear_keyboard_buffer
+				move.l	#SystemSavedText,D0
+				bsr		_Cconws
 
-			rts
+				rts
 
 
 
@@ -75,10 +75,10 @@ IDL_Save_SystemRegisters:
 
 ;xbios_rez_falcon:
 						; move.w  #-1,-(sp)				; Set mode = -1 (Reads the screen settings instead setting them)
-                		; move.w  #88,-(sp)				; XBIOS Int16 Vsetmode() - Set Video hardware register
-                		; trap    #14						; Falcon XBIOS function to obtain the video hardware settings
-                		; addq.l  #4,sp					; Correct stack
-                		; move.w  d0,SaveRegScrMode				; Save mode
+						; move.w  #88,-(sp)				; XBIOS Int16 Vsetmode() - Set Video hardware register
+						; trap    #14						; Falcon XBIOS function to obtain the video hardware settings
+						; addq.l  #4,sp					; Correct stack
+						; move.w  d0,SaveRegScrMode				; Save mode
 				
 ;                		move.w  #3,-(SP)
 ;                		move.w  #14,D7

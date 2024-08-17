@@ -2,33 +2,33 @@
 ; Inter Development Demo Library
 ;
 ;------------------------------------------------------------------------------
-section text
+section         TEXT
 ;------------------------------------------------------------------------------
 
 ;-----------------------------------------------------------------------------
 IDL_Mainloop:
-                    move.l	#StartMainloopText,d0       ; Point to string
-                    bsr		_Cconws                     ; Print text
+                move.l  #StartMainloopText,D0   ; Point to string
+                bsr     _Cconws                 ; Print text
 
-.main
-                    cmp.b   #$39,acia_keyboard_data    ; space pressed?
-                    bne     .main                       ; if not, repeat main
-                    rts
+.demoloop
+                cmp.b   #$39,acia_keyboard_data ; space pressed?
+                bne     .demoloop               ; if not, repeat main
+                rts
 
 ;------------------------------------------------------------------------------
-                    section data
+                section data
 ;------------------------------------------------------------------------------			
-			        even
+                even
 StartMainloopText:
 ;	        				"         1         2         3         4"
 ;	        				"1234567890123456789012345678901234567890"
-                    dc.b	"Starting Demo.....",CR,LF
-                    dc.b	0
+                dc.b    "Starting Demo.....",CR,LF
+                dc.b    0
     
 
 ;------------------------------------------------------------------------------
-                    section	bss
+                section bss
 ;------------------------------------------------------------------------------
-			        even
+                even
             
 

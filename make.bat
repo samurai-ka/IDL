@@ -6,8 +6,7 @@ set HATARI_BASE_PATH=C:\temp\Hatari\hatari-2.5.0_windows64
 set VASM_BASE_PATH=C:\temp\Hatari\vbcc
 
 ECHO "Compiling %1.s%"
-%VASM_BASE_PATH%\bin\vasmm68k_mot.exe -m68030 -no-opt -devpac -Ftos -noesc -o out\%1.tos %1.s
-@REM %VASM_BASE_PATH%\bin\vasmm68k_mot.exe -m68030 -no-opt -monst -Ftos -noesc -o out\%1.tos %1.s
+%VASM_BASE_PATH%\bin\vasmm68k_mot.exe -Ddebug=1 -no-opt -Ftos -noesc -o out\%1.tos %1.s
 
 ECHO "Copying %1 to Gemdos drive..."
 COPY /N /Y %USERPROFILE%\Sources\IDL\out\%1.tos %GEMDOS_TARGET_PATH%

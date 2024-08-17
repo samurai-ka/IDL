@@ -2,15 +2,16 @@
 ; Inter Development Demo Library
 ;
 ;------------------------------------------------------------------------------
-				section	text
+			section text
 ;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
-; IDL Function 'IDL_Set_F030_16MHz'
+; IDL Function 'Init_Screens'
+;   a1  =>  pointer to screen
+;   d7  =>  size of screen
 ;------------------------------------------------------------------------------
-IDL_Set_F030_16MHz:
-				ori.b	#%00000101,f030_bus_ctrl ; Set the 68030 and Blitter to 16MHz
+IDL_Init_Screens:
+                        clr.l   d0
+.clearLoop              clr.w   (a1)+
+                        dbra    d7,.clearLoop
 
-				move.l	#SystemSetToMaxSpeedText,D0
-				bsr		_Cconws					; Print Success
-
-				rts
+                        rts
