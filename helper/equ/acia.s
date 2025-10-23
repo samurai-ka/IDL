@@ -40,6 +40,9 @@ acia_midi_ctrl      EQU $FFFFFC04   ; byte  | MIDI ACIA control                B
                                     ;       | 10 - RTS high, Tx int disable ---------+-+ | | | | | |
                                     ;       | 11 - RTS low, Tx int disable,          | | | | | | | |
                                     ;       |      Tx a break onto data out ---------+-' | | | | | |
+                                    ;       | Skunk32 control via bit 6              |   | | | | | |
+                                    ;       | 1 active ------------------------------+   | | | | | |
+                                    ;       | 0 disabled ----------------------------+   | | | | | |
                                     ;       | Settings                                   | | | | | |
                                     ;       | 000 - 7 bit, even, 2 stop bit -------------+-+-+ | | |
                                     ;       | 001 - 7 bit, odd, 2 stop bit --------------+-+-+ | | |
