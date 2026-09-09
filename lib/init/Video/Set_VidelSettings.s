@@ -9,7 +9,8 @@
 ; a0.l  Pointer to a VDO sequence
 ;------------------------------------------------------------------------------
 IDL_Set_VidelSettings:
-                        bsr.s   IDL_Wait_vbl
+                        ; bsr.s   IDL_Wait_vbl
+                        WAIT_FOR_VBL
 
                         movea.l (A0)+,A0
                         move.w  (A0)+,shifter_res.w

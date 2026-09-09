@@ -1,6 +1,10 @@
 ; Inter Development Demo Library
 ; (c) 1993-2012
 
+		include	'helper\equ.s'
+		include	'helper\scankeys.s'
+		include 'lib\macros\Video.s'
+
 ;-----------------------------------------------------------------------------
 ;		Codestart and Transient Program Area
 ;-----------------------------------------------------------------------------
@@ -53,11 +57,15 @@ main:
 		trap	#14								; Call XBIOS
 		addq.l	#4,sp							; Correct stack
 
-		bsr		IDL_Get_Videobase				; Get Videobase point in A6
+		; bsr		IDL_Get_Videobase			; Get Videobase point in A6
+		; GET_SCREENBASE a6						; Get Screenbase point in A6
+		lea Framebuffer1,a0						; Set Screenbase Framebuffer1
+		SET_SCREENBASE a0
+		CLEAR_FRAMEBUFFER a0, 320*200*2			; Clear Framebuffer
 
 		; lea		_p_screen_1,a6					; Set Framebuffer to pointer
-		move.w	#%0110101010010101,d6			; Set blit
-		bsr		IDL_Clear_Framebuffer			; Call Clear Framebuffer
+		; move.w	#%0110101010010101,d6			; Set blit
+		; bsr		IDL_Clear_Framebuffer			; Call Clear Framebuffer
 		; bsr		IDL_Set_Videobase				; a6 already set to framebuffer. Call Set_Videobase address
 
 		bsr		IDL_Mainloop			
@@ -73,6 +81,8 @@ main:
 		bsr		crawcin
 			
 		rts
+
+
 ;-----------------------------------------------------------------------------
 ;			Includes
 ;			equ.s		definitions for all kind of registers, vectors, etc.
@@ -82,11 +92,10 @@ main:
 ;			init.s		Initalize the enviroment before entering the mainloop
 ;			exit.s		After exiting the mainloop and restore the system
 ;-----------------------------------------------------------------------------
-		include	'helper\equ.s'
-		include	'helper\scankeys.s'
 		include	'lib\init.s'
 		include	'lib\exit.s'			
 		include	'lib\error.s'
+
 ;-----------------------------------------------------------------------------
 		section	data
 ;-----------------------------------------------------------------------------
@@ -105,14 +114,17 @@ DummyText:
 ;-----------------------------------------------------------------------------
 		section	bss
 ;-----------------------------------------------------------------------------
-		even
-		ds.l	2000							; 2000 LongWords Stackspace
-mystack: ds.l	2			
-save_stack: ds.l 1
+					even
+					ds.l	2000							; 2000 LongWords Stackspace
+mystack: 			ds.l	2			
+save_stack: 		ds.l 1
 
+SystemType: 		ds.b	1
 
-SystemType ds.b	1
+ScreenWidth 		equ	384
+ScreenHight 		equ	288
 
-ScreenWidth equ	384*2							; Overscan 384 pixel @ TrueColor (2x .w)
-ScreenHight equ	288
-ScreenBuffers equ 3
+FramebufferSize 	equ 	ScreenWidth*ScreenHight*2	; 384*288*2 = 221184 Bytes
+					even
+Framebuffer1: 		ds.b	FramebufferSize
+Framebuffer2: 		ds.b	FramebufferSize
